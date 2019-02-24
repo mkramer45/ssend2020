@@ -1,0 +1,268 @@
+{% extends "template.html" %}
+<!--//////////////////////////// SurfSend Logo) ////////////////////////////-->
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        p.dotted2 {
+            border-style: none;
+            width: 500px;
+            height: 75px;
+            float: right;
+        }
+                p.dotted1 {
+            border-style: none;
+            width: 500px;
+            height: 75px;
+            float: left;
+        }
+    </style>
+</head>
+<!--//////////////////////////// DIV 1 ////////////////////////////-->
+<div class='container'>
+
+    <body>
+        <img src="/static/surfsend_logo_sizeM.jpg" width="420" height="110" align="middle">
+        <!--//////////////////////////// GRAPH (PyGal) ////////////////////////////-->
+
+        <body class="body">
+            <h1 class="page-header" style='text-align:left; font-family:Impact;'>Salisbury Beach</h1>
+            <p class="dotted1" align="left" style="text-align:left;"><strong>Location:</strong>Salisbury, Massachusetts
+                <br/>
+                <strong>Street Address:</strong> 1 Beach Road
+                <br/>
+                <strong>Website:</strong><a href="http://www.salisbury-beach.org/">http://www.salisbury-beach.org/</a>
+            </p>
+
+            {% for z in surf_conditions_current %}
+            <p class="dotted2" align="left" style="text-align:left;"><strong>Current Conditions:</strong>{{ z.SwellSizeFt1 }} ft / {{ z.SwellIntervalSec1 }} sec
+                <br/>
+                <strong>Current Wind:</strong>{{ z.WindDescription1 }}; {{ z.WindMPH1 }}mph
+                <br/>
+                <strong>Current Air Temp:</strong>{{ z.AirTemp1 }} °
+            </p>
+            {% endfor %}
+
+
+            <div id="first">
+                <div class="container">
+                    <p><br></p>
+                    <h1 class="page-header" style='text-align:left; font-family:Impact;'></h1>
+                    <embed type="image/svg+xml" src={{graph_data|safe}} style='width:565px; height: 565px; float:right;' />
+                    <div id="map" class="container" align="left" style='width:565px; height: 565px; float:left;'></div>
+        </body>
+        <script>
+            // Initialize and add the map
+            function initMap() {
+                // The location of Uluru
+                var uluru = {
+                    lat: 42.844321,
+                    lng: -70.815000
+                };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 12,
+                        center: uluru
+                    });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <!--Load the API from the specified URL
+      * The async attribute allows the browser to render the page while the API loads
+      * The key parameter will contain your own API key (which is not needed for this tutorial)
+      * The callback parameter executes the initMap() function
+      -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHaxSl9wEswEvC37RvyiiAkPd7sQ7PtUI&callback=initMap"></script>
+        <div id="clear"></div>
+        </div>
+        <!--//////////////////////////// Table Breakdowns (Daily) ////////////////////////////-->
+        <!--///////////// Getdate() Table /////////////-->
+        <p>
+            <br>
+        </p>
+        <p>
+            <br>
+        </p>
+                            <p><br></p>
+                    <h1 class="page-header" style='text-align:left; font-family:Impact;'></h1>
+<h3>{{ date_fin }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for x in surf_conditions_getdate %}
+            <tr>
+                <td>{{ x.Day }}</td>
+                <td>{{ x.Tiempo }}</td>
+                <td>{{ x.SwellSize }} ft</td>
+                <td>{{ x.SwellInterval }} sec</td>
+                <td>{{ x.WindDescription }}</td>
+                <td>{{ x.WindSpeed }} mph</td>
+                <td>{{ x.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!--///////////// Getdate()+1 Table /////////////-->
+<h3>{{ date_fin1 }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <!--    <th>Day</th> -->
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for y in surf_conditions_getdate1 %}
+            <tr>
+                <!--    <td>{{ y.Day }}</td> -->
+                <td>{{ y.Tiempo }}</td>
+                <td>{{ y.SwellSize }} ft</td>
+                <td>{{ y.SwellInterval }} sec</td>
+                <td>{{ y.WindDescription }}</td>
+                <td>{{ y.WindSpeed }} mph</td>
+                <td>{{ y.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!--///////////// Getdate()+2 Table /////////////-->
+<h3>{{ date_fin2 }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <!--    <th>Day</th> -->
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for y in surf_conditions_getdate2 %}
+            <tr>
+                <!--    <td>{{ y.Day }}</td> -->
+                <td>{{ y.Tiempo }}</td>
+                <td>{{ y.SwellSize }} ft</td>
+                <td>{{ y.SwellInterval }} sec</td>
+                <td>{{ y.WindDescription }}</td>
+                <td>{{ y.WindSpeed }} mph</td>
+                <td>{{ y.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!--///////////// Getdate()+3 Table /////////////-->
+<h3>{{ date_fin3 }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <!--    <th>Day</th> -->
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for y in surf_conditions_getdate3 %}
+            <tr>
+                <!--    <td>{{ y.Day }}</td> -->
+                <td>{{ y.Tiempo }}</td>
+                <td>{{ y.SwellSize }} ft</td>
+                <td>{{ y.SwellInterval }} sec</td>
+                <td>{{ y.WindDescription }}</td>
+                <td>{{ y.WindSpeed }} mph</td>
+                <td>{{ y.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!--///////////// Getdate()+4 Table /////////////-->
+<h3>{{ date_fin4 }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <!--    <th>Day</th> -->
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for y in surf_conditions_getdate4 %}
+            <tr>
+                <!--    <td>{{ y.Day }}</td> -->
+                <td>{{ y.Tiempo }}</td>
+                <td>{{ y.SwellSize }} ft</td>
+                <td>{{ y.SwellInterval }} sec</td>
+                <td>{{ y.WindDescription }}</td>
+                <td>{{ y.WindSpeed }} mph</td>
+                <td>{{ y.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!--///////////// Getdate()+5 Table /////////////-->
+<h3>{{ date_fin5 }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <!--    <th>Day</th> -->
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for y in surf_conditions_getdate5 %}
+            <tr>
+                <!--    <td>{{ y.Day }}</td> -->
+                <td>{{ y.Tiempo }}</td>
+                <td>{{ y.SwellSize }} ft</td>
+                <td>{{ y.SwellInterval }} sec</td>
+                <td>{{ y.WindDescription }}</td>
+                <td>{{ y.WindSpeed }} mph</td>
+                <td>{{ y.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!--///////////// Getdate()+6 Table /////////////-->
+<h3>{{ date_fin6 }}</h3>
+        <table class="table table-striped table-bordered table-hover table condensed">
+            <tr>
+                <!--    <th>Day</th> -->
+                <th>Time</th>
+                <th>Swell Size</th>
+                <th>Swell Interval</th>
+                <th>Wind Description</th>
+                <th>Wind Direction</th>
+                <th>Air Temp</th>
+            </tr>
+            {% for y in surf_conditions_getdate6 %}
+            <tr>
+                <!--    <td>{{ y.Day }}</td> -->
+                <td>{{ y.Tiempo }}</td>
+                <td>{{ y.SwellSize }} ft</td>
+                <td>{{ y.SwellInterval }} sec</td>
+                <td>{{ y.WindDescription }}</td>
+                <td>{{ y.WindSpeed }} mph</td>
+                <td>{{ y.AirTemperature }}°</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endblock %}

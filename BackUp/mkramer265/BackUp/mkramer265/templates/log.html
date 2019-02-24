@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+<!-- {% import "bootstrap/wtf.html" as wtf %} -->
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<!-- <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}"> -->
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+{% for field, error in form.errors.items() %}
+    {{ field }} {{ error }}
+{% endfor %}
+      <form class="form-signin" method="POST" action="/log">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {{ form.csrf_token }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.remember) }}
+        <input class="btn btn-lg btn-primary btn-block"  type='submit' value='Sign In' />
+      </form>
+
+ <!-- Add images -->     
+ <!-- 1.) Download image to computer -->
+ <!-- 2.) Upload to Google Photos ...(https://photos.google.com/) -->
+ <!-- 3.) Click Share Icon & copy the link to clipboard -->
+ <!-- 4.) Paste Link in the GooglePhoto Embedder WebApp (https://ctrlq.org/google/photos/) -->
+ <!-- 5.) Click 'Generate Code' -->
+ <!-- 6.) Copy the 2nd link ... Image Embedded Code' -->
+ <!-- 7.) Paste Code in TextEditor ... within the a-tag copy only the src link ...  -->
+ <!-- 7.) Paste src link in our img tag (as the src value)  -->
+ <!-- 8.) Done :-) -->
+
+<img src="https://lh3.googleusercontent.com/QodCznkUXt4mPei2LlNi7FeZkNjpNSlNCPmbmDFjmOlBMxLr87EAYfKSREbh2OlRKUPILddbFTNUat1628ieSFNbirJA2kZwFFh_hF3IYzVJDsmLQnUqG1tXIQpFFOSYZN85b6PZiA=w2400" alt="W3Schools.com" align="left">
+    </div> <!-- /container -->
+{% endblock %}

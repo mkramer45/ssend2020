@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+{% block content %}
+<h1>Enter the Youtube link!</h1>
+<form method="POST" action="/youtube">
+   <table class="table table-striped table-bordered table-hover table condensed">
+      <tr>
+         <td>Youtube URL</td>
+         <td><input type="text" name="URL" style="width:375px;" /></td>
+      </tr>
+      <tr>
+         <td>Desired Starting Time in Minutes</td>
+         <td><input type="text" name="TimeMM" /></td>
+      </tr>
+      <tr>
+         <td>Desired Starting Time in Seconds</td>
+         <td><input type="text" name="TimeSS" /></td>
+      </tr>
+   </table>
+   <input type="submit" value="Generate Link!" />
+</form>
+<h2>Your Time Specific Youtube Link</h2>
+<!-- <textarea id="bar">{{ appendx }}</textarea>
+<button class="btn" data-clipboard-action="copy" data-clipboard-target="bar">
+Copy to clipboard
+</button>
+<script>
+   new Clipboard("button");
+</script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<br/>
+<textarea style="width:500px; height:50px;" >{{ appendx }}</textarea>
+<button>Copy Link!</button>
+<script>
+$("button").click(function(){
+    $("textarea").select();
+    document.execCommand('copy');
+});
+</script>
+{% endblock %}

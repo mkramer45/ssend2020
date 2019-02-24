@@ -1,0 +1,82 @@
+{% extends "template2.html" %}
+{% block content %}
+<!--         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->
+<head>
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<img src="/static/surfsend_logo_sizeM.jpg" width="420" height="110" align="middle">
+<h1 class="page-header">Welcome, {{ usrn2 }}</h1>
+<p><br/></p>
+<!--           </div> -->
+<h1> Enter the Beaches You Want To Monitor!</h1>
+<form autocomplete="off" method="POST" action="/scrapelist2">
+   <table class="table table-striped table-bordered table-hover table condensed">
+      <tr>
+         <td style="padding-right: 10px">Beach Name</td>
+         <td><input type="text" name="Producername" id="srch" list="datalist1"/></td>
+         <datalist id="datalist1">
+            <option value="MA - Nantasket">
+            <option value="MA - Nahant">
+            <option value="MA - Scituate">
+            <option value="MA - Cape Cod">
+            <option value="MA - Green Harbor">
+            <option value="MA - Cape Ann">
+            <option value="MA - Devereux Beach">
+            <option value="MA - Salisbury">
+            <option value="MA - Plymouth">
+            <option value="RI - 2nd Beach">
+            <option value="RI - Narragansett">
+            <option value="RI - Baileys Beach">
+            <option value="RI - Ruggles">
+            <option value="NH - Rye">
+            <option value="NH - Hampton">
+            <option value="NH - Seabrook">
+            <option value="NH - NH Seacoast">
+         </datalist>
+         <tr><td>Email<td><input type="text" name="Email" /></td></tr>
+         <tr><td>Cell #<td><input type="text" name="CellPhone" /></td></tr>
+                  <tr><td>Notification Method<td>
+            <input type="radio" name="options" id="Motivational" value="EmailMsg">Email<br>
+            <input type="radio" name="options" id="Funny" value="TextMsg">Text<br>
+            <input type="radio" name="options" id="Snapple Fact" value="BothMsg">Both<br>
+         </td></tr>
+      </tr>
+   </table>
+   <input type="submit" value="Save" />
+</form>
+<h1 class="page-header"></h1>
+<h2>Your Beaches</h2>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+<table class="table table-striped table-bordered table-hover table condensed">
+{% for artist in pull %}
+<tr>
+<td>{{ artist.DJname }}</td>
+<td><strong>Email Destination:</strong>{{ artist.email }}</td>
+
+
+
+<td><strong>SMS Destination:</strong><div id="name2">{{ artist.cellphone }}</div></td>
+
+<script>
+var name2 = document.getElementById("name2");
+if (name.value != name.defaultValue) alert("#name has changed");
+</script>
+
+
+<td>
+<form method="post" action="/delete_artist/{{ artist.DJname }}">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete" class="btn btn-danger">
+</form>
+</td>
+</tr>
+{% endfor %}
+{% endblock %}

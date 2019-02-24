@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>SurfSend</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+   </head>
+   <body>
+      <header>
+         <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+               <a class="navbar-brand" href="/">SurfSend</a>
+               <ul class="nav navbar-nav">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/login">Login</a></li>
+                  <li><a href="/register">Register</a></li>
+                  <li><a href="/scrapelist2">SurfWatch</a></li>
+                                    <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">New Enland Surf <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                           <a class="test" tabindex="-1" href="#">Massachusetts <span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a href="/Nahant">Nahant</a></li>
+                              <li><a tabindex="-1" href="/Nantasket">Nantasket</a></li>
+                              <li><a tabindex="-1" href="/Scituate">Scituate</a></li>
+                              <li><a tabindex="-1" href="/CapeCod">Cape Cod</a></li>
+                              <li><a tabindex="-1" href="/GreenHarbor">Green Harbor</a></li>
+                              <li><a tabindex="-1" href="/CapeAnn">Cape Ann</a></li>
+                              <li><a tabindex="-1" href="/Devereux">Devereux Beach</a></li>
+                              <li><a tabindex="-1" href="/Salisbury">Salisbury Beach</a></li>
+                              <li><a tabindex="-1" href="/Plymouth">Plymouth</a></li>
+                              </li>
+                           </ul>
+                        <li class="dropdown-submenu">
+                           <a class="test" tabindex="-1" href="#">Rhode Island <span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a tabindex="-1" href="/TwoBeach">2nd Beach</a></li>
+                              <li><a tabindex="-1" href="/Narragansett">Narragansett</a></li>
+                              <li><a tabindex="-1" href="/Ruggles">Ruggles</a></li>
+                              </li>
+                           </ul>
+                        <li class="dropdown-submenu">
+                           <a class="test" tabindex="-1" href="#">New Hampshire <span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a tabindex="-1" href="/Rye">Rye Beach</a></li>
+                              <li><a tabindex="-1" href="/Hampton">Hampton Beach</a></li>
+                              <li><a tabindex="-1" href="/Seabrook">Seabrook</a></li>
+                              <li><a tabindex="-1" href="/NHSeacoast">NH Seacoast</a></li>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+<!--                   <li><a href="{{ url_for('logout') }}">Log Out</a></li> -->
+               </ul>
+            </div>
+
+         <div id="navbar" class="navbar-collapse collapse">
+         <ul class="nav navbar-nav navbar-right">
+         <li><a href="{{ url_for('login') }}">Login</a></li>
+         </ul>
+         </div>
+
+         </div>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <script src="content/js/jquery.min.js"></script>
+         <script src="content/js/bootstrap.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+         <script>
+            $(document).ready(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+         </script>
+                  <script>
+            $(document).ready(function(){
+              $('.dropdown-submenu a.test').on("click", function(e){
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+              });
+            });
+         </script>
+      </header>
+      <div class="container">
+         {% block content %}
+         {% endblock %}
+      </div>
+   </body>
+</html>
