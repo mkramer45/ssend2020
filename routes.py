@@ -44,9 +44,10 @@ bcrypt = Bcrypt(app)
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'mkramer265@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Celtics123'
+app.config['MAIL_USERNAME'] = 'surfsendhelp@gmail.com'
+app.config['MAIL_PASSWORD'] = 'CelticsPlayer123!'
 mail = Mail(app)
+artists = []
 
 #-------------------MISC FUNCTIONS-------------------#
 #-------------------MISC FUNCTIONS-------------------#
@@ -148,12 +149,20 @@ def home():
 def welcome():
 	return render_template('welcome.html')
 
+@app.route('/About')
+def About():
+	return render_template('About.html')
+
+@app.route('/Team')
+def Team():
+	return render_template('Team.html')
+
 
 # Corey ---------------------------------------------------------------------------------------------------------------
 def send_reset_email(user):
 	token = user.get_reset_token()
 	msg = Message('Password Reset Request',
-				  sender='mkramer265@gmail.com',
+				  sender='surfsendhelp@gmail.com',
 				  recipients=[user.email])
 	msg.body = f'''To reset your password, visit the following link:
 {url_for('reset_token', token=token, _external=True)}
@@ -206,13 +215,13 @@ def forgot():
 			# 	login_user(user, remember=form.remember.data)
 			# 	return redirect(url_for('scrapelist2'))
 
-			email_list = 'mkramer265@gmail.com'
+			email_list = 'surfsendhelp@gmail.com'
 
 			user_name = form.username.data
 			message_all = 'Hi ' + user_name + '!' + '\n' + '\n' + 'Heres your Password Reset link!' + '\n' + 'If you have any questions or things you would like to report, please email surfsendhelp@gmail.com.' + '\n' + '\n' + 'Warm Regards,' + '\n' + '	-Team SurfSend'
 
 			msg = MIMEMultipart()
-			msg['From'] = 'mkramer265@gmail.com'
+			msg['From'] = 'surfsendhelp@gmail.com'
 			msg['To'] = 'mkramer789@gmail.com'
 			msg['Subject'] = 'Thanks for Registering!'
 			# message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -226,9 +235,9 @@ def forgot():
 			mailserver.starttls()
 			# re-identify ourselves as an encrypted connection
 			mailserver.ehlo()
-			mailserver.login('mkramer265@gmail.com', 'Celtics123')
+			mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
 
-			mailserver.sendmail('mkramer265@gmail.com',email_list,msg.as_string())
+			mailserver.sendmail('surfsendhelp@gmail.com',email_list,msg.as_string())
 
 			mailserver.quit()
 
@@ -274,7 +283,7 @@ def reset():
 			email_list = form.email.data
 
 			msg = MIMEMultipart()
-			msg['From'] = 'mkramer265@gmail.com'
+			msg['From'] = 'surfsendhelp@gmail.com'
 			msg['To'] = 'mkramer789@gmail.com'
 			msg['Subject'] = 'Password Reset Link'
 			# message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -288,9 +297,9 @@ def reset():
 			mailserver.starttls()
 			# re-identify ourselves as an encrypted connection
 			mailserver.ehlo()
-			mailserver.login('mkramer265@gmail.com', 'Celtics123')
+			mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
 
-			mailserver.sendmail('mkramer265@gmail.com',email_list,msg.as_string())
+			mailserver.sendmail('surfsendhelp@gmail.com',email_list,msg.as_string())
 
 			mailserver.quit()
 
@@ -3777,7 +3786,7 @@ def register():
 		message_all = 'Hi ' + user_name + '!' + '\n' + '\n' + 'Thanks for registering for SurfSend!' + '\n' + 'If you have any questions or things you would like to report, please email surfsendhelp@gmail.com.' + '\n' + '\n' + 'Warm Regards,' + '\n' + '	-Team SurfSend'
 
 		msg = MIMEMultipart()
-		msg['From'] = 'mkramer265@gmail.com'
+		msg['From'] = 'surfsendhelp@gmail.com'
 		msg['To'] = 'mkramer789@gmail.com'
 		msg['Subject'] = 'Thanks for Registering!'
 		# message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -3791,9 +3800,9 @@ def register():
 		mailserver.starttls()
 		# re-identify ourselves as an encrypted connection
 		mailserver.ehlo()
-		mailserver.login('mkramer265@gmail.com', 'Celtics123')
+		mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
 
-		mailserver.sendmail('mkramer265@gmail.com',email_list,msg.as_string())
+		mailserver.sendmail('surfsendhelp@gmail.com',email_list,msg.as_string())
 
 		mailserver.quit()
 		#return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'

@@ -108,7 +108,7 @@ while True:
 
 
 		# msg = MIMEMultipart()
-		# msg['From'] = 'mkramer265@gmail.com'
+		# msg['From'] = 'surfsendhelp@gmail.com'
 		# msg['To'] = 'mkramer789@gmail.com'
 		# msg['Subject'] = 'Funny'
 		# # message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -122,9 +122,9 @@ while True:
 		# mailserver.starttls()
 		# # re-identify ourselves as an encrypted connection
 		# mailserver.ehlo()
-		# mailserver.login('mkramer265@gmail.com', 'Celtics123')
+		# mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
 
-		# mailserver.sendmail('mkramer265@gmail.com',cellphone_list,msg.as_string())
+		# mailserver.sendmail('surfsendhelp@gmail.com',cellphone_list,msg.as_string())
 
 		# mailserver.quit()
 
