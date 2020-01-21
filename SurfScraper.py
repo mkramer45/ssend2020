@@ -11,7 +11,7 @@ import sys
 
 
 
-def my_function():
+def surf_info1():
 	my_url = ['https://magicseaweed.com/Narragansett-Beach-Surf-Report/1103/',
 	'https://magicseaweed.com/2nd-Beach-Sachuest-Beach-Surf-Report/846/',
 	'https://magicseaweed.com/Nahant-Surf-Report/1091/',
@@ -66,7 +66,7 @@ def my_function():
 				conn.close()
 
 
-def my_function2():
+def wind_info():
 	#list of URLs to scrape from
 	my_url = ['https://magicseaweed.com/Narragansett-Beach-Surf-Report/1103/',
 	'https://magicseaweed.com/2nd-Beach-Sachuest-Beach-Surf-Report/846/',
@@ -123,7 +123,7 @@ def my_function2():
 			cursor.close()
 			conn.close()
 
-def my_function3():
+def wind_dir1():
 	my_url = ['https://magicseaweed.com/Narragansett-Beach-Surf-Report/1103/',
 	'https://magicseaweed.com/2nd-Beach-Sachuest-Beach-Surf-Report/846/',
 	'https://magicseaweed.com/Nahant-Surf-Report/1091/',
@@ -175,7 +175,7 @@ def my_function3():
 			conn.close()
 
 
-def my_function4():
+def wind_desc1():
 
 	url = 'https://magicseaweed.com/Narragansett-Beach-Surf-Report/1103/'
 
@@ -208,7 +208,7 @@ def my_function4():
 		conn.close()
 
 
-def my_function5():
+def master_update():
 
 	conn = sqlite3.connect('SurfSend.db')
 	cursor = conn.cursor()
@@ -503,10 +503,10 @@ def my_function5():
 	cursor.close()
 	conn.close()
 
-my_function()
-my_function2()
-my_function3()
-my_function4()
-my_function5()
+surf_info1()
+wind_info()
+wind_dir1()
+wind_desc1()
+master_update()
 
 	#Executing this script should give us 616 rows
