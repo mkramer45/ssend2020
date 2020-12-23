@@ -16,6 +16,7 @@ from email.mime.text import MIMEText
 # from email.MIMEText import MIMEText
 import pygal
 from pygal.style import BlueStyle
+from pygal.style import Style
 from datetime import date
 from datetime import timedelta
 import calendar
@@ -44,8 +45,8 @@ bcrypt = Bcrypt(app)
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'surfsendhelp@gmail.com'
-app.config['MAIL_PASSWORD'] = 'CelticsPlayer123!'
+app.config['MAIL_USERNAME'] = 'surfsendsmtp@gmail.com'
+app.config['MAIL_PASSWORD'] = 'SalemSalem123!'
 mail = Mail(app)
 artists = []
 
@@ -162,7 +163,7 @@ def Team():
 def send_reset_email(user):
 	token = user.get_reset_token()
 	msg = Message('Password Reset Request',
-				  sender='surfsendhelp@gmail.com',
+				  sender='surfsendsmtp@gmail.com',
 				  recipients=[user.email])
 	msg.body = f'''To reset your password, visit the following link:
 {url_for('reset_token', token=token, _external=True)}
@@ -215,13 +216,13 @@ def forgot():
 			# 	login_user(user, remember=form.remember.data)
 			# 	return redirect(url_for('scrapelist2'))
 
-			email_list = 'surfsendhelp@gmail.com'
+			email_list = 'surfsendsmtp@gmail.com'
 
 			user_name = form.username.data
-			message_all = 'Hi ' + user_name + '!' + '\n' + '\n' + 'Heres your Password Reset link!' + '\n' + 'If you have any questions or things you would like to report, please email surfsendhelp@gmail.com.' + '\n' + '\n' + 'Warm Regards,' + '\n' + '	-Team SurfSend'
+			message_all = 'Hi ' + user_name + '!' + '\n' + '\n' + 'Heres your Password Reset link!' + '\n' + 'If you have any questions or things you would like to report, please email surfsendsmtp@gmail.com.' + '\n' + '\n' + 'Warm Regards,' + '\n' + '	-Team SurfSend'
 
 			msg = MIMEMultipart()
-			msg['From'] = 'surfsendhelp@gmail.com'
+			msg['From'] = 'surfsendsmtp@gmail.com'
 			msg['To'] = 'mkramer789@gmail.com'
 			msg['Subject'] = 'Thanks for Registering!'
 			# message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -235,9 +236,9 @@ def forgot():
 			mailserver.starttls()
 			# re-identify ourselves as an encrypted connection
 			mailserver.ehlo()
-			mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
+			mailserver.login('surfsendsmtp@gmail.com', 'SalemSalem123!')
 
-			mailserver.sendmail('surfsendhelp@gmail.com',email_list,msg.as_string())
+			mailserver.sendmail('surfsendsmtp@gmail.com',email_list,msg.as_string())
 
 			mailserver.quit()
 
@@ -283,7 +284,7 @@ def reset():
 			email_list = form.email.data
 
 			msg = MIMEMultipart()
-			msg['From'] = 'surfsendhelp@gmail.com'
+			msg['From'] = 'surfsendsmtp@gmail.com'
 			msg['To'] = 'mkramer789@gmail.com'
 			msg['Subject'] = 'Password Reset Link'
 			# message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -297,9 +298,9 @@ def reset():
 			mailserver.starttls()
 			# re-identify ourselves as an encrypted connection
 			mailserver.ehlo()
-			mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
+			mailserver.login('surfsendsmtp@gmail.com', 'SalemSalem123!')
 
-			mailserver.sendmail('surfsendhelp@gmail.com',email_list,msg.as_string())
+			mailserver.sendmail('surfsendsmtp@gmail.com',email_list,msg.as_string())
 
 			mailserver.quit()
 
@@ -445,8 +446,19 @@ def TwoBeach():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = '2nd Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -652,8 +664,19 @@ def Narragansett():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Narragansett 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -863,8 +886,19 @@ def Ruggles():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Ruggles 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -1078,8 +1112,19 @@ def Nahant():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Nahant 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -1286,8 +1331,19 @@ def Nantasket():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Nantasket 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -1494,8 +1550,19 @@ def Scituate():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Scituate 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -1699,8 +1766,20 @@ def CapeCod():
 	# CONCAT WEEKDAY NAME + MM/DD, GETDATE()+6
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
+
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Cape Cod 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -1907,8 +1986,19 @@ def GreenHarbor():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Green Harbor 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -2115,8 +2205,19 @@ def CapeAnn():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Cape Ann 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -2324,8 +2425,19 @@ def Devereux():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Devereux Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -2532,8 +2644,19 @@ def Salisbury():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Salisbury Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -2740,8 +2863,19 @@ def Plymouth():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Plymouth Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -2954,8 +3088,19 @@ def Rye():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Rye Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -3162,8 +3307,19 @@ def Hampton():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Hampton Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -3371,8 +3527,19 @@ def Seabrook():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'Seabrook Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -3579,8 +3746,19 @@ def NHSeacoast():
 	date_fin6 = d6 + " " + mmdd
 	print(date_fin6)
 
+	custom_style = Style(
+	  background='transparent',
+	  plot_background='transparent',
+	  foreground='#53E89B',
+	  foreground_strong='#53A0E8',
+	  foreground_subtle='#630C0D',
+	  opacity='.6',
+	  opacity_hover='.9',
+	  transition='400ms ease-in',
+	  colors=('#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA', '#87CEFA'))
+
 	#code responsible for graphing the pygal chart ... using data from the DB, from list objects datelist & newl
-	graph = pygal.Line(fill=True, interpolate='cubic', style=BlueStyle)
+	graph = pygal.Line(fill=True, interpolate='cubic', style=custom_style)
 	graph.title = 'NHSeacoast Beach 7 Day Surf Forecast'
 	graph.x_labels = datelist
 	graph.add('Avg Wave Height',  avg_swell_size)
@@ -3786,7 +3964,7 @@ def register():
 		message_all = 'Hi ' + user_name + '!' + '\n' + '\n' + 'Thanks for registering for SurfSend!' + '\n' + 'If you have any questions or things you would like to report, please email surfsendhelp@gmail.com.' + '\n' + '\n' + 'Warm Regards,' + '\n' + '	-Team SurfSend'
 
 		msg = MIMEMultipart()
-		msg['From'] = 'surfsendhelp@gmail.com'
+		msg['From'] = 'surfsendsmtp@gmail.com'
 		msg['To'] = 'mkramer789@gmail.com'
 		msg['Subject'] = 'Thanks for Registering!'
 		# message = j + 'ft' ' @ ' + k + ' on ' + l
@@ -3800,9 +3978,9 @@ def register():
 		mailserver.starttls()
 		# re-identify ourselves as an encrypted connection
 		mailserver.ehlo()
-		mailserver.login('surfsendhelp@gmail.com', 'CelticsPlayer123!')
+		mailserver.login('surfsendsmtp@gmail.com', 'SalemSalem123!')
 
-		mailserver.sendmail('surfsendhelp@gmail.com',email_list,msg.as_string())
+		mailserver.sendmail('surfsendsmtp@gmail.com',email_list,msg.as_string())
 
 		mailserver.quit()
 		#return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
